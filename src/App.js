@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-
-import authors from "./data.js";
+import axios from "axios";
 
 // Components
 import Sidebar from "./Sidebar";
