@@ -5,6 +5,10 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 class SearchBar extends Component {
   state = { query: "" };
 
+  componentWillUnmount() {
+    this.props.filterAuthors("");
+  }
+
   handleChange = event => {
     this.setState({ query: event.target.value });
     this.props.filterAuthors(event.target.value);
