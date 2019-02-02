@@ -18,31 +18,32 @@ class App extends Component {
     loading: true
   };
 
-  componentDidMount() {
-    instance
-      .get("/api/authors/")
-      .then(res => res.data)
-      .then(authors =>
-        this.setState({
-          authors: authors,
-          loading: false
-        })
-      )
-      .catch(err => console.error(err));
+  async componentDidMount() {
+    try {
+      const res = await instance.get("/api/authors/");
+      const authors = res.data;
+      this.setState({
+        authors: authors,
+        filteredAuthors: authors,
+        loading: false
+      });
+    } catch (err) {
+      console.error(err);
+    }
   }
 
-  selectAuthor = authorID => {
+  selectAuthor = async authorID => {
     this.setState({ loading: true });
-    instance
-      .get(`/api/authors/${authorID}/`)
-      .then(res => res.data)
-      .then(author =>
-        this.setState({
-          currentAuthor: author,
-          loading: false
-        })
-      )
-      .catch(err => console.error(err));
+    try {
+      const res = await instance.get(`/api/authors/${authorID}/`);
+      const author = res.data;
+      this.setState({
+        currentAuthor: author,
+        loading: false
+      });
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   unselectAuthor = () => this.setState({ currentAuthor: null });
