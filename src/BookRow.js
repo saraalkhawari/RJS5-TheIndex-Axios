@@ -6,7 +6,7 @@ function BookRow(props) {
   return (
     <tr>
       <td>{book.title}</td>
-      <td>{authorName}</td>
+      <td>{authors}</td>
       <td>
         <button className="btn" style={{ backgroundColor: book.color }} />
       </td>
