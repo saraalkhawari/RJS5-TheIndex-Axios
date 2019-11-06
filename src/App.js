@@ -24,7 +24,6 @@ class App extends Component {
       const authors = res.data;
       this.setState({
         authors: authors,
-        filteredAuthors: authors,
         loading: false
       });
     } catch (err) {
@@ -54,7 +53,12 @@ class App extends Component {
     } else if (this.state.currentAuthor) {
       return <AuthorDetail author={this.state.currentAuthor} />;
     } else {
-      return <AuthorsList authors={authors} selectAuthor={this.selectAuthor} />;
+      return (
+        <AuthorsList
+          authors={this.state.authors}
+          selectAuthor={this.selectAuthor}
+        />
+      );
     }
   };
 
